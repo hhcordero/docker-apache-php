@@ -1,14 +1,21 @@
 FROM ubuntu:trusty
-MAINTAINER CenturyLinkLabs <ctl-labs-futuretech@centurylink.com>
+
+MAINTAINER Hector Cordero <hhcordero@gmail.com>
 
 # Install packages
 RUN apt-get update && \
- DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
- DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor pwgen && \
- apt-get -y install git apache2 libapache2-mod-php5 php5-mysql php5-pgsql php5-gd php-pear php-apc curl && \
- curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && \
- mv /usr/local/bin/composer.phar /usr/local/bin/composer
-
+    DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install curl supervisor && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install \
+        apache2 \
+        libapache2-mod-php5 && \
+    apt-get -y install \
+        php5 \
+        php5-gd \
+        php5-memcached \
+        php5-mysqlnd \
+        php5-xmlrpc
+        
 # Override default apache conf
 ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
 
@@ -25,4 +32,5 @@ ADD supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.conf
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 
 EXPOSE 80
+
 CMD ["/run.sh"]
