@@ -4,16 +4,24 @@ Base docker image to run PHP applications on Apache (prefork) using Ubuntu Trust
 
 # Usage
 
+<<<<<<< HEAD
 Basic run parameters:
 
+=======
+##Basic run parameters:
+>>>>>>> 91d632f041b83745cabf3fae62c77159905e0e1b
             docker run \
                         --name docker_apache_php \
                         --publish 80:80 \
                         --detach \
                     hhcordero/docker-apache-php
 
+<<<<<<< HEAD
 Mount source code from host to container:
 
+=======
+##Mount source code from host to container:
+>>>>>>> 91d632f041b83745cabf3fae62c77159905e0e1b
             docker run \
                         --name docker_apache_php \
                         --volume /path/to/app:/app \
@@ -21,8 +29,12 @@ Mount source code from host to container:
                         --detach \
                     hhcordero/docker-apache-php
 
+<<<<<<< HEAD
 Link with other container, assume mysql as the name of the other container:
 
+=======
+##Link with other container, assume mysql as the name of the other container:
+>>>>>>> 91d632f041b83745cabf3fae62c77159905e0e1b
             docker run \
                         --name docker_apache_php \
                         --link mysql:mysql \
