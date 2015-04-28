@@ -44,6 +44,8 @@ RUN chmod 755 /*.sh
 # Create /app directory and create symlink in /var/www/html
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 
+VOLUME /app
+
 EXPOSE 80
 
 CMD ["/run.sh"]
